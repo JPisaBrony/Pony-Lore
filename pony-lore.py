@@ -17,7 +17,7 @@ class Tile:
         self.s_edge = 0
         self.w_edge = 0
         self.edge_color = edge_color
-    
+
     def set_edge(self, dir, val):
         if dir == 0:
             self.n_edge = val
@@ -34,22 +34,22 @@ class Map:
         size = 50
         color = (255, 255, 255)
         edge_color = (200, 200, 200)
-        
+
         for i in range(10):
             self.add_to_map(squares, i, 0, size, color, edge_color)
-        
+
         for i in range(10):
             self.add_to_map(squares, 9, i, size, color, edge_color)
- 
+
         for i in range(10):
             self.add_to_map(squares, i, 4, size, color, edge_color)
-            
+
         for i in range(10):
             self.add_to_map(squares, 4, i, size, color, edge_color)
-        
+
         self.tiles = squares
         self.add_edges()
-    
+
     def add_edges(self):
         for i in range(len(self.tiles)):
             for j in range(len(self.tiles[0])):
@@ -91,21 +91,24 @@ class Map:
                         pygame.draw.rect(window, j.edge_color, (j.x, j.y + j.h - 2, j.w, 2))
                     if j.w_edge:
                         pygame.draw.rect(window, j.edge_color, (j.x, j.y, 2, j.h))
-    
-    def render_3d_map(self, window, player):       
-        player_tile = 0
-        if player.dir == 0 and player.tile_y >= 0 and player.tile_y <= 9:
-            player_tile = self.tiles[player.tile_x][player.tile_y-1]
-        elif player.dir == 1 and player.tile_x >= 0 and player.tile_x <= 9:
-            player_tile = self.tiles[player.tile_x+1][player.tile_y]
-        elif player.dir == 2 and player.tile_y >= 0 and player.tile_y <= 9:
-            player_tile = self.tiles[player.tile_x][player.tile_y+1]
-        elif player.dir == 3 and player.tile_x >= 0 and player.tile_x <= 9:
-            player_tile = self.tiles[player.tile_x-1][player.tile_y]
-        
-        if player_tile == 0:
-            return
-        
+
+    def render_3d_map(self, window, player):
+        #player_tile = 0
+        #
+        #if player.dir == 0 and player.tile_y >= 0 and player.tile_y <= 9:
+        #    player_tile = self.tiles[player.tile_x][player.tile_y-1]
+        #elif player.dir == 1 and player.tile_x >= 0 and player.tile_x <= 9:
+        #    player_tile = self.tiles[player.tile_x+1][player.tile_y]
+        #elif player.dir == 2 and player.tile_y >= 0 and player.tile_y <= 9:
+        #    player_tile = self.tiles[player.tile_x][player.tile_y+1]
+        #elif player.dir == 3 and player.tile_x >= 0 and player.tile_x <= 9:
+        #    player_tile = self.tiles[player.tile_x-1][player.tile_y]
+
+        #if player_tile == 0:
+        #    return
+
+        player_tile = self.tiles[player.tile_x][player.tile_y]
+
         if player.dir == 0:
             if player_tile.w_edge == 1:
                 pygame.draw.polygon(window, (255, 255, 255), ((0, 0), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4), (WINDOW_HEIGHT / 4, (WINDOW_WIDTH / 4) * 3), (0, WINDOW_WIDTH)))
@@ -171,10 +174,19 @@ class Player:
         self.dir = 1
         self.drawDir = 0
         self.tile_size = tile_size
-    
+        self.player_surface = self.create_player_surface()
+
+    def create_player_surface(self):
+        player = pygame.Surface([self.w, self.h])
+        player.fill((255, 255, 255))
+        pygame.draw.line(player, self.color, (0, self.h/2), (self.w, self.h/2))
+        pygame.draw.line(player, self.color, (self.w/2, 0), (self.w, self.h/2))
+        pygame.draw.line(player, self.color, (self.w/2, self.h), (self.w, self.h/2))
+        return player
+
     def render_player(self, window):
-        pygame.draw.rect(window, self.color, (self.x, self.y, self.w, self.h))
-    
+        window.blit(self.player_surface, (self.x, self.y))
+
     def move_forward(self):
         if self.dir == 0:
             self.y -= self.tile_size
@@ -188,7 +200,7 @@ class Player:
         elif self.dir == 3:
             self.x -= self.tile_size
             self.tile_x -= 1
-    
+
     def rotate_left(self):
         if self.dir > 0:
             self.dir -= 1
@@ -198,7 +210,8 @@ class Player:
             self.drawDir -= 1
         else:
             self.drawDir = 3
-    
+        self.player_surface = pygame.transform.rotate(self.player_surface, 90)
+
     def rotate_right(self):
         if self.dir < 3:
             self.dir += 1
@@ -208,6 +221,7 @@ class Player:
             self.drawDir += 1
         else:
             self.drawDir = 0
+        self.player_surface = pygame.transform.rotate(self.player_surface, -90)
 
 def handle_events(player):
     global show_map
