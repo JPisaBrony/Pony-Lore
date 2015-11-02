@@ -111,56 +111,65 @@ class Map:
 
         if player.dir == 0:
             if player_tile.w_edge == 1:
-                pygame.draw.polygon(window, (255, 255, 255), ((0, 0), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4), (WINDOW_HEIGHT / 4, (WINDOW_WIDTH / 4) * 3), (0, WINDOW_WIDTH)))
+                self.draw_left_wall(window, (255,255,255))
             else:
-                pygame.draw.polygon(window, (0, 0, 0), ((0, 0), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4), (WINDOW_HEIGHT / 4, (WINDOW_WIDTH / 4) * 3), (0, WINDOW_WIDTH)))
+                self.draw_left_wall(window, (0,0,0))
             if player_tile.e_edge == 1:
-                pygame.draw.polygon(window, (255, 255, 255), ((WINDOW_HEIGHT, 0), ((WINDOW_HEIGHT / 4) * 3, WINDOW_WIDTH / 4), ((WINDOW_HEIGHT / 4) * 3, (WINDOW_WIDTH / 4) * 3), (WINDOW_HEIGHT, WINDOW_WIDTH)))
+                self.draw_right_wall(window, (255,255,255))
             else:
-                pygame.draw.polygon(window, (0, 0, 0), ((WINDOW_HEIGHT, 0), ((WINDOW_HEIGHT / 4) * 3, WINDOW_WIDTH / 4), ((WINDOW_HEIGHT / 4) * 3, (WINDOW_WIDTH / 4) * 3), (WINDOW_HEIGHT, WINDOW_WIDTH)))
+                self.draw_right_wall(window, (0,0,0))
             if player_tile.n_edge == 1:
-                pygame.draw.rect(window, (200, 200, 200), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4, WINDOW_HEIGHT / 2, WINDOW_WIDTH / 2))
+                self.draw_front_wall(window, (255,255,255))
             else:
-                pygame.draw.rect(window, (0, 0, 0), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4, WINDOW_HEIGHT / 2, WINDOW_WIDTH / 2))
+                self.draw_front_wall(window, (0,0,0))
         if player.dir == 1:
             if player_tile.n_edge == 1:
-                pygame.draw.polygon(window, (255, 255, 255), ((0, 0), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4), (WINDOW_HEIGHT / 4, (WINDOW_WIDTH / 4) * 3), (0, WINDOW_WIDTH)))
+                self.draw_left_wall(window, (255,255,255))
             else:
-                pygame.draw.polygon(window, (0, 0, 0), ((0, 0), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4), (WINDOW_HEIGHT / 4, (WINDOW_WIDTH / 4) * 3), (0, WINDOW_WIDTH)))
+                self.draw_left_wall(window, (0,0,0))
             if player_tile.s_edge == 1:
-                pygame.draw.polygon(window, (255, 255, 255), ((WINDOW_HEIGHT, 0), ((WINDOW_HEIGHT / 4) * 3, WINDOW_WIDTH / 4), ((WINDOW_HEIGHT / 4) * 3, (WINDOW_WIDTH / 4) * 3), (WINDOW_HEIGHT, WINDOW_WIDTH)))
+                self.draw_right_wall(window, (255,255,255))
             else:
-                pygame.draw.polygon(window, (0, 0, 0), ((WINDOW_HEIGHT, 0), ((WINDOW_HEIGHT / 4) * 3, WINDOW_WIDTH / 4), ((WINDOW_HEIGHT / 4) * 3, (WINDOW_WIDTH / 4) * 3), (WINDOW_HEIGHT, WINDOW_WIDTH)))
+                self.draw_right_wall(window, (0,0,0))
             if player_tile.e_edge == 1:
-                pygame.draw.rect(window, (200, 200, 200), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4, WINDOW_HEIGHT / 2, WINDOW_WIDTH / 2))
+                self.draw_front_wall(window, (255,255,255))
             else:
-                pygame.draw.rect(window, (0, 0, 0), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4, WINDOW_HEIGHT / 2, WINDOW_WIDTH / 2))
+                self.draw_front_wall(window, (0,0,0))
         if player.dir == 2:
             if player_tile.e_edge == 1:
-                pygame.draw.polygon(window, (255, 255, 255), ((0, 0), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4), (WINDOW_HEIGHT / 4, (WINDOW_WIDTH / 4) * 3), (0, WINDOW_WIDTH)))
+                self.draw_left_wall(window, (255,255,255))
             else:
-                pygame.draw.polygon(window, (0, 0, 0), ((0, 0), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4), (WINDOW_HEIGHT / 4, (WINDOW_WIDTH / 4) * 3), (0, WINDOW_WIDTH)))
+                self.draw_left_wall(window, (0,0,0))
             if player_tile.w_edge == 1:
-                pygame.draw.polygon(window, (255, 255, 255), ((WINDOW_HEIGHT, 0), ((WINDOW_HEIGHT / 4) * 3, WINDOW_WIDTH / 4), ((WINDOW_HEIGHT / 4) * 3, (WINDOW_WIDTH / 4) * 3), (WINDOW_HEIGHT, WINDOW_WIDTH)))
+                self.draw_right_wall(window, (255,255,255))
             else:
-                pygame.draw.polygon(window, (0, 0, 0), ((WINDOW_HEIGHT, 0), ((WINDOW_HEIGHT / 4) * 3, WINDOW_WIDTH / 4), ((WINDOW_HEIGHT / 4) * 3, (WINDOW_WIDTH / 4) * 3), (WINDOW_HEIGHT, WINDOW_WIDTH)))
+                self.draw_right_wall(window, (0,0,0))
             if player_tile.s_edge == 1:
-                pygame.draw.rect(window, (200, 200, 200), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4, WINDOW_HEIGHT / 2, WINDOW_WIDTH / 2))
+                self.draw_front_wall(window, (255,255,255))
             else:
-                pygame.draw.rect(window, (0, 0, 0), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4, WINDOW_HEIGHT / 2, WINDOW_WIDTH / 2))
+                self.draw_front_wall(window, (0,0,0))
         if player.dir == 3:
             if player_tile.s_edge == 1:
-                pygame.draw.polygon(window, (255, 255, 255), ((0, 0), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4), (WINDOW_HEIGHT / 4, (WINDOW_WIDTH / 4) * 3), (0, WINDOW_WIDTH)))
+               self.draw_left_wall(window, (255,255,255))
             else:
-                pygame.draw.polygon(window, (0, 0, 0), ((0, 0), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4), (WINDOW_HEIGHT / 4, (WINDOW_WIDTH / 4) * 3), (0, WINDOW_WIDTH)))
+                self.draw_left_wall(window, (0,0,0))
             if player_tile.n_edge == 1:
-                pygame.draw.polygon(window, (255, 255, 255), ((WINDOW_HEIGHT, 0), ((WINDOW_HEIGHT / 4) * 3, WINDOW_WIDTH / 4), ((WINDOW_HEIGHT / 4) * 3, (WINDOW_WIDTH / 4) * 3), (WINDOW_HEIGHT, WINDOW_WIDTH)))
+                self.draw_right_wall(window, (255,255,255))
             else:
-                pygame.draw.polygon(window, (0, 0, 0), ((WINDOW_HEIGHT, 0), ((WINDOW_HEIGHT / 4) * 3, WINDOW_WIDTH / 4), ((WINDOW_HEIGHT / 4) * 3, (WINDOW_WIDTH / 4) * 3), (WINDOW_HEIGHT, WINDOW_WIDTH)))
+                self.draw_right_wall(window, (0,0,0))
             if player_tile.w_edge == 1:
-                pygame.draw.rect(window, (200, 200, 200), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4, WINDOW_HEIGHT / 2, WINDOW_WIDTH / 2))
+                self.draw_front_wall(window, (255,255,255))
             else:
-                pygame.draw.rect(window, (0, 0, 0), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4, WINDOW_HEIGHT / 2, WINDOW_WIDTH / 2))
+                self.draw_front_wall(window, (0,0,0))
+
+    def draw_left_wall(self, window, color):
+        pygame.draw.polygon(window, color, ((0, 0), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4), (WINDOW_HEIGHT / 4, (WINDOW_WIDTH / 4) * 3), (0, WINDOW_WIDTH)))
+
+    def draw_right_wall(self, window, color):
+        pygame.draw.polygon(window, color, ((WINDOW_HEIGHT, 0), ((WINDOW_HEIGHT / 4) * 3, WINDOW_WIDTH / 4), ((WINDOW_HEIGHT / 4) * 3, (WINDOW_WIDTH / 4) * 3), (WINDOW_HEIGHT, WINDOW_WIDTH)))
+
+    def draw_front_wall(self, window, color):
+        pygame.draw.rect(window, color, (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4, WINDOW_HEIGHT / 2, WINDOW_WIDTH / 2))
 
 class Player:
     def __init__(self, tile_size):
