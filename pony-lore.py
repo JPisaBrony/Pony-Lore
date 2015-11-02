@@ -223,10 +223,6 @@ class Player:
             self.dir -= 1
         else:
             self.dir = 3
-        if self.drawDir > 0:
-            self.drawDir -= 1
-        else:
-            self.drawDir = 3
         self.player_surface = pygame.transform.rotate(self.player_surface, 90)
 
     def rotate_right(self):
@@ -234,10 +230,6 @@ class Player:
             self.dir += 1
         else:
             self.dir = 0
-        if self.drawDir < 3:
-            self.drawDir += 1
-        else:
-            self.drawDir = 0
         self.player_surface = pygame.transform.rotate(self.player_surface, -90)
 
 def handle_events(player):
