@@ -107,6 +107,9 @@ class Map:
         #if player_tile == 0:
         #    return
 
+        self.draw_ground(window, (200,200,200))
+        self.draw_ceiling(window, (200,200,200))
+
         player_tile = self.tiles[player.tile_x][player.tile_y]
 
         if player.dir == 0:
@@ -171,6 +174,12 @@ class Map:
     def draw_front_wall(self, window, color):
         pygame.draw.rect(window, color, (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4, WINDOW_HEIGHT / 2, WINDOW_WIDTH / 2))
 
+    def draw_ground(self, window, color):
+        pygame.draw.polygon(window, color, ((0, WINDOW_WIDTH), (WINDOW_HEIGHT / 4, (WINDOW_WIDTH / 4) * 3), ((WINDOW_HEIGHT / 4) * 3, (WINDOW_WIDTH / 4) * 3), (WINDOW_HEIGHT, WINDOW_WIDTH)))
+
+    def draw_ceiling(self, window, color):
+        pygame.draw.polygon(window, color, ((0,0), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4), ((WINDOW_HEIGHT / 4) * 3, WINDOW_WIDTH / 4), (WINDOW_HEIGHT, 0)))
+
 class Player:
     def __init__(self, tile_size):
         self.x = tile_size / 4
@@ -181,7 +190,6 @@ class Player:
         self.w = tile_size / 2
         self.h = tile_size / 2
         self.dir = 1
-        self.drawDir = 0
         self.tile_size = tile_size
         self.player_surface = self.create_player_surface()
 
