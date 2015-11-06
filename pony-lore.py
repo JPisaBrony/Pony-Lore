@@ -166,19 +166,28 @@ class Map:
                 self.draw_front_wall(window, (0,0,0))
 
     def draw_left_wall(self, window, color):
-        pygame.draw.polygon(window, color, ((0, 0), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4), (WINDOW_HEIGHT / 4, (WINDOW_WIDTH / 4) * 3), (0, WINDOW_WIDTH)))
+        pygame.draw.polygon(window, color, ((0, 0), (WINDOW_HEIGHT / 8, WINDOW_WIDTH / 8), (WINDOW_HEIGHT / 8, (WINDOW_WIDTH / 8) * 7), (0, WINDOW_WIDTH)))
+
+    def draw_middle_left_wall(self, window, color):
+        pygame.draw.polygon(window, color, ((WINDOW_HEIGHT / 8, WINDOW_WIDTH / 8), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4), (WINDOW_HEIGHT / 4, (WINDOW_WIDTH / 4) * 3), (WINDOW_HEIGHT / 8, (WINDOW_WIDTH / 8) * 7)))
 
     def draw_right_wall(self, window, color):
-        pygame.draw.polygon(window, color, ((WINDOW_HEIGHT, 0), ((WINDOW_HEIGHT / 4) * 3, WINDOW_WIDTH / 4), ((WINDOW_HEIGHT / 4) * 3, (WINDOW_WIDTH / 4) * 3), (WINDOW_HEIGHT, WINDOW_WIDTH)))
+        pygame.draw.polygon(window, color, ((WINDOW_HEIGHT, 0), ((WINDOW_HEIGHT / 8) * 7, WINDOW_WIDTH / 8), ((WINDOW_HEIGHT / 8) * 7, (WINDOW_WIDTH / 8) * 7), (WINDOW_HEIGHT, WINDOW_WIDTH)))
+    
+    def draw_middle_right_wall(self, window, color):
+        pygame.draw.polygon(window, color, (((WINDOW_HEIGHT / 8) * 7, WINDOW_WIDTH / 8), ((WINDOW_HEIGHT / 4) * 3, WINDOW_WIDTH / 4), ((WINDOW_HEIGHT / 4) * 3, (WINDOW_WIDTH / 4) * 3), ((WINDOW_HEIGHT / 8) * 7, (WINDOW_WIDTH / 8) * 7)))
 
     def draw_front_wall(self, window, color):
+        pygame.draw.rect(window, color, (WINDOW_HEIGHT / 8, WINDOW_WIDTH / 8, WINDOW_HEIGHT / 1.333333, WINDOW_WIDTH / 1.333333))
+
+    def draw_middle_front_wall(self, window, color):
         pygame.draw.rect(window, color, (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4, WINDOW_HEIGHT / 2, WINDOW_WIDTH / 2))
 
     def draw_ground(self, window, color):
-        pygame.draw.polygon(window, color, ((0, WINDOW_WIDTH), (WINDOW_HEIGHT / 4, (WINDOW_WIDTH / 4) * 3), ((WINDOW_HEIGHT / 4) * 3, (WINDOW_WIDTH / 4) * 3), (WINDOW_HEIGHT, WINDOW_WIDTH)))
+        pygame.draw.polygon(window, color, ((0, WINDOW_WIDTH), (WINDOW_HEIGHT / 8, (WINDOW_WIDTH / 8) * 7), ((WINDOW_HEIGHT / 8) * 7, (WINDOW_WIDTH / 8) * 7), (WINDOW_HEIGHT, WINDOW_WIDTH)))
 
     def draw_ceiling(self, window, color):
-        pygame.draw.polygon(window, color, ((0,0), (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4), ((WINDOW_HEIGHT / 4) * 3, WINDOW_WIDTH / 4), (WINDOW_HEIGHT, 0)))
+        pygame.draw.polygon(window, color, ((0,0), (WINDOW_HEIGHT / 8, WINDOW_WIDTH / 8), ((WINDOW_HEIGHT / 8) * 7, WINDOW_WIDTH / 8), (WINDOW_HEIGHT, 0)))
 
 class Player:
     def __init__(self, tile_size):
