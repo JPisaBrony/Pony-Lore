@@ -113,57 +113,27 @@ class Map:
         player_tile = self.tiles[player.tile_x][player.tile_y]
 
         if player.dir == 0:
-            if player_tile.w_edge == 1:
-                self.draw_left_wall(window, (255,255,255))
-            else:
-                self.draw_left_wall(window, (0,0,0))
-            if player_tile.e_edge == 1:
-                self.draw_right_wall(window, (255,255,255))
-            else:
-                self.draw_right_wall(window, (0,0,0))
-            if player_tile.n_edge == 1:
-                self.draw_front_wall(window, (255,255,255))
-            else:
-                self.draw_front_wall(window, (0,0,0))
+            self.draw_wall(window, player_tile.w_edge, self.draw_left_wall, (255,255,255))
+            self.draw_wall(window, player_tile.e_edge, self.draw_right_wall, (255,255,255))
+            self.draw_wall(window, player_tile.n_edge, self.draw_front_wall, (255,255,255))
         if player.dir == 1:
-            if player_tile.n_edge == 1:
-                self.draw_left_wall(window, (255,255,255))
-            else:
-                self.draw_left_wall(window, (0,0,0))
-            if player_tile.s_edge == 1:
-                self.draw_right_wall(window, (255,255,255))
-            else:
-                self.draw_right_wall(window, (0,0,0))
-            if player_tile.e_edge == 1:
-                self.draw_front_wall(window, (255,255,255))
-            else:
-                self.draw_front_wall(window, (0,0,0))
+            self.draw_wall(window, player_tile.n_edge, self.draw_left_wall, (255,255,255))
+            self.draw_wall(window, player_tile.s_edge, self.draw_right_wall, (255,255,255))
+            self.draw_wall(window, player_tile.e_edge, self.draw_front_wall, (255,255,255))
         if player.dir == 2:
-            if player_tile.e_edge == 1:
-                self.draw_left_wall(window, (255,255,255))
-            else:
-                self.draw_left_wall(window, (0,0,0))
-            if player_tile.w_edge == 1:
-                self.draw_right_wall(window, (255,255,255))
-            else:
-                self.draw_right_wall(window, (0,0,0))
-            if player_tile.s_edge == 1:
-                self.draw_front_wall(window, (255,255,255))
-            else:
-                self.draw_front_wall(window, (0,0,0))
+            self.draw_wall(window, player_tile.e_edge, self.draw_left_wall, (255,255,255))
+            self.draw_wall(window, player_tile.w_edge, self.draw_right_wall, (255,255,255))
+            self.draw_wall(window, player_tile.s_edge, self.draw_front_wall, (255,255,255))
         if player.dir == 3:
-            if player_tile.s_edge == 1:
-               self.draw_left_wall(window, (255,255,255))
-            else:
-                self.draw_left_wall(window, (0,0,0))
-            if player_tile.n_edge == 1:
-                self.draw_right_wall(window, (255,255,255))
-            else:
-                self.draw_right_wall(window, (0,0,0))
-            if player_tile.w_edge == 1:
-                self.draw_front_wall(window, (255,255,255))
-            else:
-                self.draw_front_wall(window, (0,0,0))
+            self.draw_wall(window, player_tile.s_edge, self.draw_left_wall, (255,255,255))
+            self.draw_wall(window, player_tile.n_edge, self.draw_right_wall, (255,255,255))
+            self.draw_wall(window, player_tile.w_edge, self.draw_front_wall, (255,255,255))
+    
+    def draw_wall(self, window, edge, func, color):
+        if edge == 1:
+            func(window, color)
+        else:
+            func(window, (0,0,0))
 
     def draw_left_wall(self, window, color):
         pygame.draw.polygon(window, color, ((0, 0), (WINDOW_HEIGHT / 8, WINDOW_WIDTH / 8), (WINDOW_HEIGHT / 8, (WINDOW_WIDTH / 8) * 7), (0, WINDOW_WIDTH)))
