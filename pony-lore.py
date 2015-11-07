@@ -41,7 +41,7 @@ def main():
     pygame.init()
     window = pygame.display.set_mode((WINDOW_HEIGHT, WINDOW_WIDTH))
     test_map = Map(10)
-    player = Player(50)
+    player = Player(50, test_map)
     while True:
         handle_events(player)
         draw(window, test_map, player)
