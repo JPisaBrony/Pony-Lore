@@ -1,0 +1,2 @@
+cython --embed main.py
+gcc -I /usr/include/python2.7 main.c -o main -lpython2.7 -lpthread -lm -lutil -ldl

@@ -1,0 +1,1 @@
+p4a apk --private . --package com.jp.ponylore --name ponylore --version 0.1 --bootstrap pygame --requirements sdl,python2 --dist_name ponylore
