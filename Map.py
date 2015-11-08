@@ -69,8 +69,9 @@ class Map:
                         pygame.draw.rect(window, j.edge_color, (j.x, j.y, 2, j.h))
 
     def render_3d_map(self, window, player):
+        """
         player_middle_tile = 0
-        
+
         if player.dir == 0 and player.tile_y >= 0 and player.tile_y <= len(self.tiles[0])-2:
             player_middle_tile = self.tiles[player.tile_x][player.tile_y-1]
         elif player.dir == 1 and player.tile_x >= 0 and player.tile_x <= len(self.tiles)-2:
@@ -79,10 +80,22 @@ class Map:
             player_middle_tile = self.tiles[player.tile_x][player.tile_y+1]
         elif player.dir == 3 and player.tile_x >= 0 and player.tile_x <= len(self.tiles)-2:
             player_middle_tile = self.tiles[player.tile_x-1][player.tile_y]
+        """
 
         self.draw_ground(window, (200,200,200))
         self.draw_ceiling(window, (200,200,200))
 
+        if player.dir == 1:
+            self.draw_wall_2(window, player.tiles_around[0][0], self.draw_left_wall, (255,255,255))
+            self.draw_wall_2(window, player.tiles_around[0][2], self.draw_right_wall, (255,255,255))
+            self.draw_wall_2(window, player.tiles_around[1][0], self.draw_middle_left_wall, (255,255,255))
+            self.draw_wall_2(window, player.tiles_around[1][2], self.draw_middle_right_wall, (255,255,255))
+            if player.tiles_around[1][1] != 0:
+                self.draw_wall_2(window, player.tiles_around[1][2], self.draw_middle_front_wall, (255,255,255))
+            if player.tiles_around[1][1] == 0:
+                self.draw_front_wall(window, (255,255,255))
+
+        """
         player_tile = self.tiles[player.tile_x][player.tile_y]
 
         if player.dir == 0:
@@ -104,7 +117,15 @@ class Map:
             self.draw_wall(window, player_tile.s_edge, self.draw_left_wall, (255,255,255))
             self.draw_wall(window, player_tile.n_edge, self.draw_right_wall, (255,255,255))
             self.draw_wall(window, player_tile.w_edge, self.draw_front_wall, (255,255,255))
-    
+        """
+
+
+    def draw_wall_2(self, window, tile, func, color):
+        if tile == 0:
+            func(window, color)
+        else:
+            func(window, (0,0,0))
+
     def draw_wall(self, window, edge, func, color):
         if edge == 1:
             func(window, color)
@@ -119,7 +140,7 @@ class Map:
 
     def draw_right_wall(self, window, color):
         pygame.draw.polygon(window, color, ((WINDOW_HEIGHT, 0), ((WINDOW_HEIGHT / 8) * 7, WINDOW_WIDTH / 8), ((WINDOW_HEIGHT / 8) * 7, (WINDOW_WIDTH / 8) * 7), (WINDOW_HEIGHT, WINDOW_WIDTH)))
-    
+
     def draw_middle_right_wall(self, window, color):
         pygame.draw.polygon(window, color, (((WINDOW_HEIGHT / 8) * 7, WINDOW_WIDTH / 8), ((WINDOW_HEIGHT / 4) * 3, WINDOW_WIDTH / 4), ((WINDOW_HEIGHT / 4) * 3, (WINDOW_WIDTH / 4) * 3), ((WINDOW_HEIGHT / 8) * 7, (WINDOW_WIDTH / 8) * 7)))
 
