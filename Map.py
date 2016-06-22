@@ -88,8 +88,8 @@ class Map:
         if player.dir == 2:
             self.draw_wall_2(window, player.tiles_around[2][0], self.draw_left_wall, (255,255,255))
             self.draw_wall_2(window, player.tiles_around[0][0], self.draw_right_wall, (255,255,255))
-            self.draw_wall_2(window, player.tiles_around[0][1], self.draw_middle_left_wall, (255,255,255))
-            self.draw_wall_2(window, player.tiles_around[2][1], self.draw_middle_right_wall, (255,255,255))
+            self.draw_wall_2(window, player.tiles_around[2][1], self.draw_middle_left_wall, (255,255,255))
+            self.draw_wall_2(window, player.tiles_around[0][1], self.draw_middle_right_wall, (255,255,255))
             if player.tiles_around[1][1] != 0:
                 if player.tiles_around[1][2] != 0:
                     self.draw_wall_2(window, player.tiles_around[1][2], self.draw_far_front_wall, (255,255,255))
