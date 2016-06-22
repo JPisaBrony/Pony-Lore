@@ -78,7 +78,10 @@ class Map:
             self.draw_wall_2(window, player.tiles_around[1][0], self.draw_middle_left_wall, (255,255,255))
             self.draw_wall_2(window, player.tiles_around[1][2], self.draw_middle_right_wall, (255,255,255))
             if player.tiles_around[1][1] != 0:
-                self.draw_wall_2(window, player.tiles_around[1][1], self.draw_middle_front_wall, (255,255,255))
+                if player.tiles_around[2][1] != 0:
+                    self.draw_wall_2(window, player.tiles_around[2][1], self.draw_far_front_wall, (255,255,255))
+                else:
+                    self.draw_wall_2(window, player.tiles_around[1][1], self.draw_middle_front_wall, (255,255,255))
             else:
                 self.draw_front_wall(window, (255,255,255))
 
@@ -88,7 +91,10 @@ class Map:
             self.draw_wall_2(window, player.tiles_around[0][1], self.draw_middle_left_wall, (255,255,255))
             self.draw_wall_2(window, player.tiles_around[2][1], self.draw_middle_right_wall, (255,255,255))
             if player.tiles_around[1][1] != 0:
-                self.draw_wall_2(window, player.tiles_around[1][1], self.draw_middle_front_wall, (255,255,255))
+                if player.tiles_around[1][2] != 0:
+                    self.draw_wall_2(window, player.tiles_around[1][2], self.draw_far_front_wall, (255,255,255))
+                else:
+                    self.draw_wall_2(window, player.tiles_around[1][1], self.draw_middle_front_wall, (255,255,255))
             else:
                 self.draw_front_wall(window, (255,255,255))
 
@@ -98,7 +104,10 @@ class Map:
             self.draw_wall_2(window, player.tiles_around[1][2], self.draw_middle_left_wall, (255,255,255))
             self.draw_wall_2(window, player.tiles_around[1][0], self.draw_middle_right_wall, (255,255,255))
             if player.tiles_around[1][1] != 0:
-                self.draw_wall_2(window, player.tiles_around[1][1], self.draw_middle_front_wall, (255,255,255))
+                if player.tiles_around[0][1] != 0:
+                    self.draw_wall_2(window, player.tiles_around[0][1], self.draw_far_front_wall, (255,255,255))
+                else:
+                    self.draw_wall_2(window, player.tiles_around[1][1], self.draw_middle_front_wall, (255,255,255))
             else:
                 self.draw_front_wall(window, (255,255,255))
 
@@ -108,7 +117,10 @@ class Map:
             self.draw_wall_2(window, player.tiles_around[0][1], self.draw_middle_left_wall, (255,255,255))
             self.draw_wall_2(window, player.tiles_around[2][1], self.draw_middle_right_wall, (255,255,255))
             if player.tiles_around[1][1] != 0:
-                self.draw_wall_2(window, player.tiles_around[1][1], self.draw_middle_front_wall, (255,255,255))
+                if player.tiles_around[1][0] != 0:
+                    self.draw_wall_2(window, player.tiles_around[1][0], self.draw_far_front_wall, (255,255,255))
+                else:
+                    self.draw_wall_2(window, player.tiles_around[1][1], self.draw_middle_front_wall, (255,255,255))
             else:
                 self.draw_front_wall(window, (255,255,255))
 
@@ -136,11 +148,17 @@ class Map:
     def draw_middle_right_wall(self, window, color):
         pygame.draw.polygon(window, color, (((WINDOW_HEIGHT / 8) * 7, WINDOW_WIDTH / 8), ((WINDOW_HEIGHT / 4) * 3, WINDOW_WIDTH / 4), ((WINDOW_HEIGHT / 4) * 3, (WINDOW_WIDTH / 4) * 3), ((WINDOW_HEIGHT / 8) * 7, (WINDOW_WIDTH / 8) * 7)))
 
+    def draw_far_right_wall(self, window, color):
+        pygame.draw.polygon(window, color, (((WINDOW_HEIGHT / 8) * 7, WINDOW_WIDTH / 8), ((WINDOW_HEIGHT / 4) * 3, WINDOW_WIDTH / 4), ((WINDOW_HEIGHT / 4) * 3, (WINDOW_WIDTH / 4) * 3), ((WINDOW_HEIGHT / 8) * 7, (WINDOW_WIDTH / 8) * 7)))
+
     def draw_front_wall(self, window, color):
         pygame.draw.rect(window, color, (WINDOW_HEIGHT / 8, WINDOW_WIDTH / 8, WINDOW_HEIGHT / 1.333333, WINDOW_WIDTH / 1.333333))
 
     def draw_middle_front_wall(self, window, color):
         pygame.draw.rect(window, color, (WINDOW_HEIGHT / 4, WINDOW_WIDTH / 4, WINDOW_HEIGHT / 2, WINDOW_WIDTH / 2))
+
+    def draw_far_front_wall(self, window, color):
+        pygame.draw.rect(window, color, (WINDOW_HEIGHT / 3, WINDOW_WIDTH / 3, WINDOW_HEIGHT / 3, WINDOW_WIDTH / 3))
 
     def draw_ground(self, window, color):
         pygame.draw.polygon(window, color, ((0, WINDOW_WIDTH), (WINDOW_HEIGHT / 2, WINDOW_WIDTH / 2), (WINDOW_HEIGHT, WINDOW_WIDTH)))
